@@ -29,11 +29,12 @@ import java.util.Map;
 )
 public class HelloWorld implements RequestHandler<APIGatewayV2HTTPEvent, APIGatewayV2HTTPResponse> {
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
     @Override
     public APIGatewayV2HTTPResponse handleRequest(APIGatewayV2HTTPEvent event, Context context) {
         String method = getMethod(event);
         String path = getPath(event);
-        if (method.equalsIgnoreCase("GET" )&& path.equals("/hello")){
+        if (method.equalsIgnoreCase("GET") && path.equals("/hello")) {
 
             return APIGatewayV2HTTPResponse.builder()
                     .withStatusCode(200)
@@ -41,10 +42,10 @@ public class HelloWorld implements RequestHandler<APIGatewayV2HTTPEvent, APIGate
                     .withBody("{\"statusCode\": 200,\"message\": \"Hello from Lambda\"}")
                     .build();
         }
-        String errorMessage = String.format(
-                "{\"statusCode\": 400, \"message\": Bad request syntax or unsupported method. Request path: %s. HTTP method: %s}",
-                path, method
-        );
+        String message = String.format("Bad request syntax or unsupported method. Request path: %s. HTTP method: %s}",
+                path, method);
+        String errorMessage =
+                "{\"statusCode\": 400, \"message\": " + message;
         return APIGatewayV2HTTPResponse.builder()
                 .withStatusCode(400)
                 .withHeaders(Map.of("Content-Type", "application/json"))
