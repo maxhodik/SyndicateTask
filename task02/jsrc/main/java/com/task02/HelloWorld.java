@@ -4,6 +4,8 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayV2HTTPEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayV2HTTPResponse;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.syndicate.deployment.annotations.lambda.LambdaHandler;
 import com.syndicate.deployment.annotations.lambda.LambdaUrlConfig;
 import com.syndicate.deployment.model.RetentionSetting;
@@ -26,19 +28,27 @@ import java.util.Map;
         invokeMode = InvokeMode.BUFFERED
 )
 public class HelloWorld implements RequestHandler<APIGatewayV2HTTPEvent, APIGatewayV2HTTPResponse> {
+    private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
     @Override
     public APIGatewayV2HTTPResponse handleRequest(APIGatewayV2HTTPEvent event, Context context) {
         String method = getMethod(event);
         String path = getPath(event);
         if (method.equalsIgnoreCase("GET" )&& path.equals("/hello")){
+
             return APIGatewayV2HTTPResponse.builder()
                     .withStatusCode(200)
-                    .withBody("Hello from Lambda")
+                    .withHeaders(Map.of("Content-Type", "application/json"))
+                    .withBody("{\"message\": \"Hello from Lambda\"}")
                     .build();
         }
+        String errorMessage = String.format(
+                "{\"message\": \"Bad request syntax or unsupported method.\", \"requestPath\": \"%s\", \"httpMethod\": \"%s\"}",
+                path, method
+        );
         return APIGatewayV2HTTPResponse.builder()
                 .withStatusCode(400)
-                .withBody("Bad request syntax or unsupported method. Request path: {path}. HTTP method: {method}")
+                .withHeaders(Map.of("Content-Type", "application/json"))
+                .withBody(errorMessage)
                 .build();
     }
 
