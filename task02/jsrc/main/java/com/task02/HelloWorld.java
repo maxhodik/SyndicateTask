@@ -38,11 +38,11 @@ public class HelloWorld implements RequestHandler<APIGatewayV2HTTPEvent, APIGate
             return APIGatewayV2HTTPResponse.builder()
                     .withStatusCode(200)
                     .withHeaders(Map.of("Content-Type", "application/json"))
-                    .withBody("{\"message\": \"Hello from Lambda\"}")
+                    .withBody("{\"statusCode\":\"200\",\"message\": \"Hello from Lambda\"}")
                     .build();
         }
         String errorMessage = String.format(
-                "{\"message\": \"Bad request syntax or unsupported method.\", \"requestPath\": \"%s\", \"httpMethod\": \"%s\"}",
+                "{\"statusCode\":\"400\", \"message\": \"Bad request syntax or unsupported method.\", \"requestPath\": \"%s\", \"httpMethod\": \"%s\"}",
                 path, method
         );
         return APIGatewayV2HTTPResponse.builder()
