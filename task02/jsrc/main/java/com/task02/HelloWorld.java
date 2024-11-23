@@ -45,9 +45,9 @@ public class HelloWorld implements RequestHandler<APIGatewayV2HTTPEvent, APIGate
                     .withBody("{\"statusCode\": 200,\"message\": \"Hello from Lambda\"}")
                     .build();
         }
-        String message = String.format("Bad request syntax or unsupported method. Request path: %s. HTTP method: %s}",
+        String message = String.format("Bad request syntax or unsupported method. Request path: %s. HTTP method: %s",
                 path, method);
-        Map<String, String> error =  Map.of("statusCode", "400",
+        Map<String, Object> error =  Map.of("statusCode", 400,
                  "message", message);
         String errorMessage = null;
         try {
