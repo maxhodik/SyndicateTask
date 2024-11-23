@@ -44,12 +44,12 @@ public class HelloWorld implements RequestHandler<APIGatewayV2HTTPEvent, APIGate
         }
         String message = String.format("Bad request syntax or unsupported method. Request path: %s. HTTP method: %s}",
                 path, method);
-        String errorMessage =
-                "{\"statusCode\": 400, \"message\": " + message;
+        Map<String, String> error =  Map.of("statusCode", "400",
+                 "message", message);
         return APIGatewayV2HTTPResponse.builder()
                 .withStatusCode(400)
                 .withHeaders(Map.of("Content-Type", "application/json"))
-                .withBody(errorMessage)
+                .withBody(error.toString())
                 .build();
     }
 
