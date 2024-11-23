@@ -4,6 +4,8 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayV2HTTPEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayV2HTTPResponse;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.syndicate.deployment.annotations.lambda.LambdaHandler;
@@ -29,6 +31,7 @@ import java.util.Map;
 )
 public class HelloWorld implements RequestHandler<APIGatewayV2HTTPEvent, APIGatewayV2HTTPResponse> {
     private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    private static final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
     public APIGatewayV2HTTPResponse handleRequest(APIGatewayV2HTTPEvent event, Context context) {
@@ -46,10 +49,16 @@ public class HelloWorld implements RequestHandler<APIGatewayV2HTTPEvent, APIGate
                 path, method);
         Map<String, String> error =  Map.of("statusCode", "400",
                  "message", message);
+        String errorMessage = null;
+        try {
+            errorMessage = objectMapper.writeValueAsString(error);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
         return APIGatewayV2HTTPResponse.builder()
                 .withStatusCode(400)
                 .withHeaders(Map.of("Content-Type", "application/json"))
-                .withBody("\"statusCode\": \"400\", \"message\": " +message)
+                .withBody(errorMessage)
                 .build();
     }
 
