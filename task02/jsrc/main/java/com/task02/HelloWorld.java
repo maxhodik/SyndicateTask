@@ -49,7 +49,7 @@ public class HelloWorld implements RequestHandler<APIGatewayV2HTTPEvent, APIGate
         return APIGatewayV2HTTPResponse.builder()
                 .withStatusCode(400)
                 .withHeaders(Map.of("Content-Type", "application/json"))
-                .withBody(error.toString())
+                .withBody("\"statusCode\": \"400\", \"message\": " +message)
                 .build();
     }
 
