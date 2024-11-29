@@ -38,6 +38,9 @@
     "resource_type": "api_gateway",
     "deploy_stage": "api",
     "dependencies": [],
+    "methods": [
+      "GET"
+    ],
     "resources": {},
     "minimum_compression_size": 0,
     "tags": {}
