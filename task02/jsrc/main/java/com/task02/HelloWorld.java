@@ -14,14 +14,12 @@ import com.syndicate.deployment.model.RetentionSetting;
 import com.syndicate.deployment.model.lambda.url.AuthType;
 import com.syndicate.deployment.model.lambda.url.InvokeMode;
 
-import java.util.HashMap;
 import java.util.Map;
 
 @LambdaHandler(
         lambdaName = "hello_world",
         roleName = "hello_world-role",
         isPublishVersion = true,
-//        aliasName = "${lambdas_alias_name}",
         aliasName = "learn",
         logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED
 )
@@ -69,11 +67,5 @@ public class HelloWorld implements RequestHandler<APIGatewayV2HTTPEvent, APIGate
     private String getPath(APIGatewayV2HTTPEvent requestEvent) {
         return requestEvent.getRequestContext().getHttp().getPath();
     }
-//	public Map<String, Object> handleRequest(Object request, Context context) {
-//		System.out.println("Hello from lambda task 2");
-//		Map<String, Object> resultMap = new HashMap<String, Object>();
-//		resultMap.put("statusCode", 200);
-//		resultMap.put("body", "Hello from Lambda");
-//		return resultMap;
-//	}
+
 }
