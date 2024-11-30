@@ -89,5 +89,42 @@
     "custom_attributes": [],
     "client": {},
     "tags": {}
+  },
+  "demo-lambda-execution-policy": {
+    "resource_type": "iam_policy",
+    "policy_content": {
+      "demo-lambda-execution-policy": {
+        "resource_type": "iam_policy",
+        "policy_content": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      }
+    },
+    "tags": {}
+  },
+  "demo-lambda-role": {
+    "resource_type": "iam_role",
+    "principal_service": "lambda",
+    "predefined_policies": [
+      "AmazonS3ReadOnlyAccess"
+    ],
+    "custom_policies": [
+      "demo-lambda-execution-policy"
+    ],
+    "allowed_accounts": [],
+    "instance_profile": false,
+    "permissions_boundary": "",
+    "tags": {}
   }
 }
