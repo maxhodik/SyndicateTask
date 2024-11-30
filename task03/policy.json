@@ -1,19 +1,14 @@
 {
-  "demo-lambda-execution-policy": {
-    "resource_type": "iam_policy",
-    "policy_content": {
-      "Version": "2012-10-17",
-      "Statement": [
-        {
-          "Effect": "Allow",
-          "Action": [
-            "logs:CreateLogGroup",
-            "logs:CreateLogStream",
-            "logs:PutLogEvents"
-          ],
-          "Resource": "arn:aws:logs:*:*:*"
-        }
-      ]
+  "Statement": [
+    {
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Effect": "Allow",
+      "Resource": "*"
     }
-  }
+  ],
+  "Version": "2012-10-17"
 }

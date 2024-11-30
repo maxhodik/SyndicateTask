@@ -80,9 +80,7 @@
     "auto_verified_attributes": [
       "email"
     ],
-    "sms_configuration": {
-      "sns_caller_arn": "arn:aws:iam::123412341234:role/CognitoSMSRole"
-    },
+    "sms_configuration": {},
     "username_attributes": [
       "email"
     ],
@@ -93,23 +91,18 @@
   "demo-lambda-execution-policy": {
     "resource_type": "iam_policy",
     "policy_content": {
-      "demo-lambda-execution-policy": {
-        "resource_type": "iam_policy",
-        "policy_content": {
-          "Statement": [
-            {
-              "Action": [
-                "logs:CreateLogGroup",
-                "logs:CreateLogStream",
-                "logs:PutLogEvents"
-              ],
-              "Effect": "Allow",
-              "Resource": "*"
-            }
+      "Statement": [
+        {
+          "Action": [
+            "logs:CreateLogGroup",
+            "logs:CreateLogStream",
+            "logs:PutLogEvents"
           ],
-          "Version": "2012-10-17"
+          "Effect": "Allow",
+          "Resource": "*"
         }
-      }
+      ],
+      "Version": "2012-10-17"
     },
     "tags": {}
   },
