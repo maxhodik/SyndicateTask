@@ -57,24 +57,6 @@
     "minimum_compression_size": 0,
     "tags": {}
   },
-  "demo-lambda-execution-policy": {
-    "resource_type": "iam_policy",
-    "policy_content": {
-      "Statement": [
-        {
-          "Action": [
-            "logs:CreateLogGroup",
-            "logs:CreateLogStream",
-            "logs:PutLogEvents"
-          ],
-          "Effect": "Allow",
-          "Resource": "*"
-        }
-      ],
-      "Version": "2012-10-17"
-    },
-    "tags": {}
-  },
   "demo-lambda-role": {
     "resource_type": "iam_role",
     "principal_service": "lambda",
@@ -82,7 +64,7 @@
       "AmazonS3ReadOnlyAccess"
     ],
     "custom_policies": [
-      "demo-lambda-execution-policy"
+      "lambda-basic-execution"
     ],
     "allowed_accounts": [],
     "instance_profile": false,
