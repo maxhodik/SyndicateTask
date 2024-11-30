@@ -42,14 +42,13 @@
       "/hello": {
         "enable_cors": false,
         "GET": {
-          "authorization_type": "AWS_IAM",
+          "authorization_type": "NONE",
           "integration_type": "lambda",
           "lambda_name": "hello_world",
           "api_key_required": false,
           "method_request_parameters": {},
           "integration_request_body_template": {},
           "responses": [],
-          "integration_http_method": "POST",
           "integration_responses": [],
           "default_error_pattern": true
         }
