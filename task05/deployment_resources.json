@@ -46,7 +46,7 @@
       "/events": {
         "enable_cors": false,
         "POST": {
-          "authorization_type": "AWS_IAM",
+          "authorization_type": "NONE",
           "integration_type": "lambda",
           "lambda_name": "api_handler",
           "api_key_required": false,
@@ -59,17 +59,7 @@
       }
     },
     "minimum_compression_size": 0,
-    "tags": {},
-    "authorizers": {
-      "demo-authorizer": {
-        "type": "COGNITO_USER_POOLS",
-        "identity_source": "method.request.header.Authorization",
-        "ttl": 300,
-        "user_pools": [
-          "demo-user-pool"
-        ]
-      }
-    }
+    "tags": {}
   },
   "demo-lambda-role": {
     "resource_type": "iam_role",
@@ -107,7 +97,7 @@
   },
   "Events": {
     "resource_type": "dynamodb_table",
-    "hash_key_name": "Id",
+    "hash_key_name": "id",
     "hash_key_type": "N",
     "read_capacity": 1,
     "write_capacity": 1,
