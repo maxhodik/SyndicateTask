@@ -48,7 +48,7 @@ public class ApiHandler implements RequestHandler<APIGatewayProxyRequestEvent, A
             item.put("id", AttributeValue.builder().s(eventData.get("id").toString()).build());
             item.put("principalId", AttributeValue.builder().n(eventData.get("principalId")).build());
             item.put("createdAt", AttributeValue.builder().s(eventData.get("createdAt")).build());
-            item.put("body", AttributeValue.builder().s(objectMapper.writeValueAsString(eventData.get("body"))).build());
+            item.put("body", AttributeValue.builder().s(objectMapper.writeValueAsString(eventData.get("content"))).build());
 
             PutItemRequest putItemRequest = PutItemRequest.builder()
                     .tableName(TABLE_NAME)
