@@ -1,0 +1,34 @@
+{
+  "sqs_handler": {
+    "name": "sqs_handler",
+    "lambda_path": "C:\\Users\\m-god\\IdeaProjects\\study\\epamLab\\AWS\\SyndicateTask\\task04",
+    "version": "1.0.0",
+    "func_name": "com.task04.SqsHandler",
+    "deployment_package": "task04-1.0.0.jar",
+    "resource_type": "lambda",
+    "runtime": "java11",
+    "architectures": [
+      "x86_64"
+    ],
+    "iam_role_name": "sqs_handler-role",
+    "memory": 1024,
+    "timeout": 300,
+    "subnet_ids": [],
+    "security_group_ids": [],
+    "dependencies": [],
+    "event_sources": [
+      {
+        "resource_name": "async_queue",
+        "event_type": "sqs"
+      }
+    ],
+    "env_variables": {
+    },
+    "tags": {
+    },
+    "publish_version": true,
+    "alias": "learn",
+    "logs_expiration": "${logs_expiration}",
+    "snap_start": "None"
+  }
+}

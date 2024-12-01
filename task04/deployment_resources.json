@@ -93,22 +93,13 @@
     "client": {},
     "tags": {}
   },
-  "demo-lambda": {
-    "resource_type": "lambda",
-    "runtime": "java11",
-    "handler": "lambda_function.lambda_handler",
-    "memory_size": 128,
-    "timeout": 30,
-    "environment_variables": {
-      "ENV": "dev"
-    },
-    "role_name": "demo-lambda-role",
-    "event_sources": [
-      {
-        "resource_name": "async_queue",
-        "event_type": "sqs"
-      }
+  "SqsHandler-role": {
+    "predefined_policies": [],
+    "principal_service": "lambda",
+    "custom_policies": [
+      "lambda-basic-execution"
     ],
+    "resource_type": "iam_role",
     "tags": {}
   }
 }
