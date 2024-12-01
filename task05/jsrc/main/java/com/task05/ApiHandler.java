@@ -38,7 +38,7 @@ public class ApiHandler implements RequestHandler<Object, Map<String, Object>> {
     private final DynamoDbClient dynamoDbClient;
     private final ObjectMapper objectMapper;
     private Gson gson;
-    private static final String TABLE_NAME = "cmtr-529b17ca-Events";
+    private static final String TABLE_NAME = "cmtr-529b17ca-Events-test";
     private RequestDto dto;
     static final DynamoDbClient standardClient = DynamoDbClient.builder()
             .region(Region.EU_CENTRAL_1)
@@ -98,7 +98,7 @@ public class ApiHandler implements RequestHandler<Object, Map<String, Object>> {
             dynamoDbClient.putItem(putItemRequest);
             Map<String, Object> resultMap = new HashMap<String, Object>();
             resultMap.put("statusCode", 201);
-            resultMap.put("event", item);
+            resultMap.put("event", objectMapper.writeValueAsString(item));
             return resultMap;
         } catch (JsonProcessingException e) {
             context.getLogger().log("Error saving event: " + e.getMessage());
