@@ -12,6 +12,7 @@ import com.syndicate.deployment.model.RetentionSetting;
 import com.syndicate.deployment.model.lambda.url.AuthType;
 import com.syndicate.deployment.model.lambda.url.InvokeMode;
 import dto.RequestDto;
+import dto.ResponseDto;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
@@ -21,6 +22,7 @@ import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @LambdaHandler(
         lambdaName = "api_handler",
@@ -89,18 +91,24 @@ public class ApiHandler implements RequestHandler<Object, Map<String, Object>> {
 //             item.put("id", AttributeValue.builder().s(eventData.get("id")).build());
             item.put("principalId", AttributeValue.builder().n(requestDto.getPrincipalId().toString()).build());
             item.put("createdAt", AttributeValue.builder().s(createdAt).build());
-            item.put("body", AttributeValue.builder().s(objectMapper.writeValueAsString(requestDto.getContent())).build());
+            Map<String, String> mapOfIntegers = requestDto.getContent();
+            Map<String, AttributeValue> mapOfStrings = mapOfIntegers.entrySet().stream()
+                    .collect(Collectors.toMap(Map.Entry::getKey, entry -> AttributeValue.builder().s(entry.getValue()).build()));
+
+            item.put("body", AttributeValue.builder().m(mapOfStrings).build());
 
             PutItemRequest putItemRequest = PutItemRequest.builder()
                     .tableName(TABLE_NAME)
                     .item(item)
                     .build();
             dynamoDbClient.putItem(putItemRequest);
+            ResponseDto responseDto = new ResponseDto();
             Map<String, Object> resultMap = new HashMap<String, Object>();
             resultMap.put("statusCode", 201);
             resultMap.put("event", objectMapper.writeValueAsString(item));
-            return resultMap;
-        } catch (JsonProcessingException e) {
+            return objectMapper.readValue(objectMapper.writeValueAsString(responseDto), HashMap.class);
+        } catch (
+                JsonProcessingException e) {
             context.getLogger().log("Error saving event: " + e.getMessage());
             return Map.of("message", e.getMessage());
         }
