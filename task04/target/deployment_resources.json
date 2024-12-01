@@ -28,8 +28,8 @@
     "logs_expiration" : "${logs_expiration}",
     "snap_start" : "None"
   },
-  "SqsHandler" : {
-    "name" : "SqsHandler",
+  "sqs_handler" : {
+    "name" : "sqs_handler",
     "lambda_path" : "C:\\Users\\m-god\\IdeaProjects\\study\\epamLab\\AWS\\SyndicateTask\\task04",
     "version" : "1.0.0",
     "func_name" : "com.task04.SqsHandler",

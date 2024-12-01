@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @LambdaHandler(
-		lambdaName = "SqsHandler",
+		lambdaName = "sqs_handler",
 		roleName = "SqsHandler-role",
 		isPublishVersion = true,
 		aliasName = "learn",
