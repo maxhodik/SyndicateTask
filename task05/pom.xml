@@ -68,6 +68,7 @@
                     </packages>
                     <fileName>${project.name}-${project.version}.jar</fileName>
                 </configuration>
+
                 <executions>
                     <execution>
                         <id>generate-config</id>

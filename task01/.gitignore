@@ -1,3 +1,9 @@
 .syndicate
 logs/
 .syndicate-config-*/
+.aws-sam
+.idea
+events
+DynamoDBApp/target
+samconfig.toml
+/DynamoDBApp/dependency-reduced-pom.xml
