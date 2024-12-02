@@ -41,8 +41,8 @@ public class UuidGenerator implements RequestHandler<Object, String> {
         ids.put("ids", uuidList);
         String jsonIds = gson.toJson(ids);
 
-//        s3Client.putObject(BUCKET_NAME, fileName, jsonIds);
-        s3Client.putObject(BUCKET_NAME_TEST, fileName, jsonIds);
+        s3Client.putObject(BUCKET_NAME, fileName, jsonIds);
+//        s3Client.putObject(BUCKET_NAME_TEST, fileName, jsonIds);
 
         return "File created" + fileName;
     }
