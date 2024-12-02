@@ -11,6 +11,7 @@ import com.syndicate.deployment.annotations.lambda.LambdaUrlConfig;
 import com.syndicate.deployment.model.RetentionSetting;
 import com.syndicate.deployment.model.lambda.url.AuthType;
 import com.syndicate.deployment.model.lambda.url.InvokeMode;
+import dto.EventDto;
 import dto.RequestDto;
 import dto.ResponseDto;
 import software.amazon.awssdk.regions.Region;
@@ -70,18 +71,6 @@ public class ApiHandler implements RequestHandler<Object, Map<String, Object>> {
                     new ObjectMapper().writer().withDefaultPrettyPrinter().writeValueAsString(request), RequestDto.class);
             Gson gson = new Gson();
 
-//            if (requestDto==null || requestDto.getPrincipalId()==null){
-//                HashMap<Object, Object> objectObjectHashMap = new HashMap<>();
-//                objectObjectHashMap.put("event", event.getBody());
-//                objectObjectHashMap.put("request", requestDto);
-//                objectObjectHashMap.put("id", requestDto==null? null: requestDto.getPrincipalId());
-//                Type typeObject = new TypeToken<HashMap>() {}.getType();
-//
-//                return  APIGatewayV2HTTPResponse.builder()
-//                        .withStatusCode(200)
-//                        .withBody(event.getBody()+ "resp "+ gson.toJson(map, typeObject)).build();
-//            }
-//            Map<String, String> eventData = objectMapper.readValue(event.getBody(), Map.class);
             String eventId = UUID.randomUUID().toString();
 //            eventData.put("id", eventId);
             String createdAt = Instant.now().toString();
@@ -103,10 +92,16 @@ public class ApiHandler implements RequestHandler<Object, Map<String, Object>> {
                     .build();
             dynamoDbClient.putItem(putItemRequest);
             ResponseDto responseDto = new ResponseDto();
+            responseDto.setStatusCode(201);
+            EventDto eventDto = new EventDto();
+            eventDto.setId(eventId);
+            eventDto.setCreatedAt(createdAt);
+            eventDto.setPrincipalId(requestDto.getPrincipalId());
+            eventDto.setBody(requestDto.getContent());
             Map<String, Object> resultMap = new HashMap<String, Object>();
             resultMap.put("statusCode", 201);
-            resultMap.put("event", objectMapper.writeValueAsString(item));
-            return objectMapper.readValue(objectMapper.writeValueAsString(responseDto), HashMap.class);
+            resultMap.put("event", eventDto);
+            return resultMap;
         } catch (
                 JsonProcessingException e) {
             context.getLogger().log("Error saving event: " + e.getMessage());

@@ -35,6 +35,16 @@ public class EventDto {
         this.createdAt = createdAt;
     }
 
+    @Override
+    public String toString() {
+        return new org.apache.commons.lang3.builder.ToStringBuilder(this)
+                .append("id", id)
+                .append("principalId", principalId)
+                .append("createdAt", createdAt)
+                .append("body", body)
+                .toString();
+    }
+
     public Map<String, String> getBody() {
         return body;
     }
