@@ -2,17 +2,14 @@ package com.task07;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
-import com.amazonaws.services.lambda.runtime.events.ScheduledEvent;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.google.gson.Gson;
 import com.syndicate.deployment.annotations.events.RuleEventSource;
-import com.syndicate.deployment.annotations.events.S3EventSource;
 import com.syndicate.deployment.annotations.lambda.LambdaHandler;
 import com.syndicate.deployment.model.RetentionSetting;
 
 import java.time.Instant;
-import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
 import java.util.*;
 
@@ -27,7 +24,8 @@ import java.util.*;
 
 public class UuidGenerator implements RequestHandler<Object, String> {
 
-    private static final String BUCKET_NAME = "uuid-storage";
+    private static final String BUCKET_NAME = "cmtr-529b17ca-uuid-storage";
+    public static final String BUCKET_NAME_TEST = "cmtr-529b17ca-uuid-storage-test";
     private final AmazonS3 s3Client = AmazonS3ClientBuilder.defaultClient();
     private Gson gson = new Gson();
 
@@ -44,6 +42,8 @@ public class UuidGenerator implements RequestHandler<Object, String> {
         String jsonIds = gson.toJson(ids);
 
         s3Client.putObject(BUCKET_NAME, fileName, jsonIds);
+        s3Client.putObject(BUCKET_NAME_TEST, fileName, jsonIds);
+
         return "File created" + fileName;
     }
 }
