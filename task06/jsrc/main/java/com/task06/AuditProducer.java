@@ -36,7 +36,7 @@ import java.util.UUID;
         batchSize = 1
 )
 public class AuditProducer implements RequestHandler<DynamodbEvent, String> {
-    private static final String TABLE_NAME = "cmtr-529b17ca-Audit-test";
+    private static final String TABLE_NAME = "cmtr-529b17ca-Audit";
     private final AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard().build();
     private final DynamoDB dynamoDb = new DynamoDB(client);
     private final Table auditTable = dynamoDb.getTable(TABLE_NAME);
@@ -50,10 +50,12 @@ public class AuditProducer implements RequestHandler<DynamodbEvent, String> {
             if (eventName.equals("INSERT")) {
                 Map<String, AttributeValue> newImage = record.getDynamodb().getNewImage();
                 insertNewDataInAuditTable(newImage);
+                System.out.println("insert");
             } else if (eventName.equals("MODIFY")) {
                 Map<String, AttributeValue> newImage = record.getDynamodb().getNewImage();
                 Map<String, AttributeValue> oldImage = record.getDynamodb().getOldImage();
                 modifyDataInAuditTable(newImage, oldImage);
+                System.out.println("modify");
             }
         }
         return "";
@@ -61,15 +63,18 @@ public class AuditProducer implements RequestHandler<DynamodbEvent, String> {
 
     private void modifyDataInAuditTable(Map<String, AttributeValue> newImage, Map<String, AttributeValue> oldImage) {
         String key = newImage.get("key").getS();
-        int value = Integer.parseInt(newImage.get("value").getN());
-        Item item = new Item()
-                .withPrimaryKey("id", UUID.randomUUID().toString())
-                .withString("itemKey", key)
-                .withString("modificationTime", Instant.now().atOffset(ZoneOffset.UTC).toString())
-                .withString("updatedAttribute", "value")
-                .withInt("oldValue", Integer.parseInt(oldImage.get("key").getN()))
-                .withInt("newValue", value);
-        auditTable.putItem(item);
+        int newValue = Integer.parseInt(newImage.get("value").getN());
+        int oldValue = Integer.parseInt(oldImage.get("value").getN());
+        if (newValue != oldValue) {
+            Item item = new Item()
+                    .withPrimaryKey("id", UUID.randomUUID().toString())
+                    .withString("itemKey", key)
+                    .withString("modificationTime", Instant.now().atOffset(ZoneOffset.UTC).toString())
+                    .withString("updatedAttribute", "value")
+                    .withInt("oldValue", oldValue)
+                    .withInt("newValue", newValue);
+            auditTable.putItem(item);
+        }
     }
 
     private void insertNewDataInAuditTable(Map<String, AttributeValue> newImage) {
