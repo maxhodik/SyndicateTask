@@ -50,7 +50,7 @@ public class ApiHandler implements RequestHandler<Map<String, String>, String> {
         OpenMeteo meteo = new OpenMeteo();
 
         try {
-            return meteo.getWeatherForecast(latitude, longitude);
+            return meteo.getWeatherForecast(50.4375, 30.5);
         } catch (IOException e) {
             return "error:" + e.getMessage();
         }
