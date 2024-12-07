@@ -9,9 +9,9 @@ import java.net.URL;
 public class OpenMeteo {
     private static final String BASE_URL = "https://api.open-meteo.com/v1/forecast";
 
-    public String getWeatherForecast(double latitude, double longitude) throws IOException {
-        String urlString = String.format("%s?latitude=%f&longitude=%f&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m",
-                BASE_URL, latitude, longitude);
+    public String getWeatherForecast() throws IOException {
+        String urlString = String.format("%s?latitude=%s&longitude=%s&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m",
+                BASE_URL, "50.4375", "30.5");
 
         URL url = new URL(urlString);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();

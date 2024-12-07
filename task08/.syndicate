@@ -6,10 +6,114 @@ lambdas:
     runtime: java
 locks:
   modification_lock:
-    last_modification_date: '2024-12-07T21:50:58Z'
+    last_modification_date: '2024-12-07T22:29:30Z'
     locked_till: null
     initiator: m-god
 events:
+- operation: deploy
+  initiator: m-god
+  bundle_name: task08_241208.002851
+  deploy_name: task08
+  time_start: '2024-12-08T00:29:15Z'
+  time_end: '2024-12-08T00:29:30Z'
+  duration_sec: 15.041
+  status: failed
+  rollback_on_error: false
+- operation: build
+  initiator: m-god
+  bundle_name: task08_241208.002851
+  time_start: '2024-12-08T00:28:52Z'
+  time_end: '2024-12-08T00:29:08Z'
+  duration_sec: 15.865
+- operation: upload
+  initiator: m-god
+  bundle_name: task08_241208.002851
+  time_start: '2024-12-08T00:29:04Z'
+  time_end: '2024-12-08T00:29:08Z'
+  duration_sec: 3.75
+- operation: package_meta
+  initiator: m-god
+  bundle_name: task08_241208.002851
+  time_start: '2024-12-08T00:29:03Z'
+  time_end: '2024-12-08T00:29:03Z'
+  duration_sec: 0.02
+- operation: assemble
+  initiator: m-god
+  bundle_name: task08_241208.002851
+  time_start: '2024-12-08T00:28:53Z'
+  time_end: '2024-12-08T00:29:03Z'
+  duration_sec: 9.9
+- operation: assemble_java_mvn
+  initiator: m-god
+  bundle_name: task08_241208.002851
+  time_start: '2024-12-08T00:28:53Z'
+  time_end: '2024-12-08T00:29:02Z'
+  duration_sec: 9.522
+- operation: test
+  initiator: m-god
+  time_start: '2024-12-08T00:28:53Z'
+  time_end: '2024-12-08T00:28:53Z'
+  duration_sec: 0.001
+- operation: clean
+  initiator: m-god
+  bundle_name: task08_241208.002457
+  deploy_name: task08
+  time_start: '2024-12-08T00:28:37Z'
+  time_end: '2024-12-08T00:28:47Z'
+  duration_sec: 9.2
+  status: succeeded
+- operation: deploy
+  initiator: m-god
+  bundle_name: task08_241208.002457
+  deploy_name: task08
+  time_start: '2024-12-08T00:25:21Z'
+  time_end: '2024-12-08T00:25:36Z'
+  duration_sec: 15.615
+  status: failed
+  rollback_on_error: false
+- operation: build
+  initiator: m-god
+  bundle_name: task08_241208.002457
+  time_start: '2024-12-08T00:24:58Z'
+  time_end: '2024-12-08T00:25:13Z'
+  duration_sec: 14.584
+- operation: upload
+  initiator: m-god
+  bundle_name: task08_241208.002457
+  time_start: '2024-12-08T00:25:09Z'
+  time_end: '2024-12-08T00:25:13Z'
+  duration_sec: 3.513
+- operation: package_meta
+  initiator: m-god
+  bundle_name: task08_241208.002457
+  time_start: '2024-12-08T00:25:08Z'
+  time_end: '2024-12-08T00:25:08Z'
+  duration_sec: 0.066
+- operation: assemble
+  initiator: m-god
+  bundle_name: task08_241208.002457
+  time_start: '2024-12-08T00:24:59Z'
+  time_end: '2024-12-08T00:25:08Z'
+  duration_sec: 8.92
+- operation: assemble_java_mvn
+  initiator: m-god
+  bundle_name: task08_241208.002457
+  time_start: '2024-12-08T00:24:59Z'
+  time_end: '2024-12-08T00:25:08Z'
+  duration_sec: 8.495
+- operation: test
+  initiator: m-god
+  time_start: '2024-12-08T00:24:59Z'
+  time_end: '2024-12-08T00:24:59Z'
+  duration_sec: 0.002
+- operation: clean
+  initiator: m-god
+  bundle_name: task08_241207.235014
+  deploy_name: task08
+  time_start: '2024-12-08T00:24:46Z'
+  time_end: '2024-12-08T00:24:53Z'
+  duration_sec: 6.95
+  status: succeeded
 - operation: deploy
   initiator: m-god
   bundle_name: task08_241207.235014
@@ -1900,9 +2004,9 @@ events:
   duration_sec: 0.001
 latest_deploy:
   initiator: m-god
-  bundle_name: task08_241207.235014
+  bundle_name: task08_241208.002851
   deploy_name: task08
-  time_start: '2024-12-07T23:50:41Z'
-  time_end: '2024-12-07T23:50:57Z'
-  duration_sec: 16.564
-  is_succeeded: true
+  time_start: '2024-12-08T00:29:15Z'
+  time_end: '2024-12-08T00:29:30Z'
+  duration_sec: 15.041
+  is_succeeded: false
