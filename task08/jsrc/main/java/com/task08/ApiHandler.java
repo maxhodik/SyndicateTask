@@ -20,7 +20,7 @@ import java.util.Map;
         roleName = "api_handler-role",
         isPublishVersion = false,
         layers = {"meteo-weather"},
-//		aliasName = "${lambdas_alias_name}",
+        aliasName = "learn",
         logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED
 )
 
