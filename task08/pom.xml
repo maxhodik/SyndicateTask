@@ -26,7 +26,6 @@
             <scope>system</scope>
             <systemPath>${basedir}/layer/java/lib/task08-layer-1.0-SNAPSHOT.jar</systemPath>
         </dependency>
-
         <dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-lambda-java-core</artifactId>
