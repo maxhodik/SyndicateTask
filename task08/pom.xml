@@ -6,7 +6,6 @@
 
     <groupId>task08-group</groupId>
     <artifactId>task08</artifactId>
-    <packaging>pom</packaging>
     <version>1.0.0</version>
 
     <properties>
@@ -20,6 +19,13 @@
     </properties>
 
     <dependencies>
+        <!--        <dependency>-->
+        <!--            <groupId>com.task08</groupId>-->
+        <!--            <artifactId>layer</artifactId>-->
+        <!--            <version>1.0-SNAPSHOT</version>-->
+        <!--            <scope>system</scope>-->
+        <!--            <systemPath>${basedir}/layer/java/lib/task08-layer-1.0-SNAPSHOT.jar</systemPath>-->
+        <!--        </dependency>-->
         <!-- AWS dependencies-->
         <dependency>
             <groupId>com.amazonaws</groupId>
@@ -32,8 +38,6 @@
             <artifactId>deployment-configuration-annotations</artifactId>
             <version>${syndicate.java.plugin.version}</version>
         </dependency>
-
-
     </dependencies>
 
     <build>

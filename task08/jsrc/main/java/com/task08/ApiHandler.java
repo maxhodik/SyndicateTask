@@ -16,43 +16,42 @@ import java.io.IOException;
 import java.util.Map;
 
 @LambdaHandler(
-        lambdaName = "api_handler",
-        roleName = "api_handler-role",
-        isPublishVersion = true,
-        aliasName = "${lambdas_alias_name}",
-        logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED
+		lambdaName = "api_handler",
+		roleName = "api_handler-role",
+		isPublishVersion = true,
+		aliasName = "${lambdas_alias_name}",
+		logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED
 )
 @LambdaLayer(
-        layerName = "meteo-weather",
-        libraries = {"layer/java/lib/weather-lambda-java-1.0-SNAPSHOT.jar"},
-        runtime = DeploymentRuntime.JAVA11,
-        architectures = {Architecture.ARM64},
-        artifactExtension = ArtifactExtension.ZIP
+		layerName = "meteo-weather",
+		libraries = {"layer/java/lib/task08-layer-1.0-SNAPSHOT.jar"},
+		runtime = DeploymentRuntime.JAVA11,
+		architectures = {Architecture.ARM64},
+		artifactExtension = ArtifactExtension.ZIP
 )
 @LambdaUrlConfig(
-        authType = AuthType.NONE,
-        invokeMode = InvokeMode.BUFFERED
+		authType = AuthType.NONE,
+		invokeMode = InvokeMode.BUFFERED
 )
 public class ApiHandler implements RequestHandler<Map<String, String>, String> {
 
 
-    @Override
-    public String handleRequest(Map<String, String> event, Context context) {
-        String latitudeStr = event.get("latitude");
-        String longitudeStr = event.get("longitude");
-        if (longitudeStr == null || latitudeStr == null) {
-            return "error: latitude and longitude are required";
-        }
-        double latitude = Double.parseDouble(latitudeStr);
-        double longitude = Double.parseDouble(longitudeStr);
-        OpenMeteo meteo = new OpenMeteo();
+	@Override
+	public String handleRequest(Map<String, String> event, Context context) {
+		String latitudeStr = event.get("latitude");
+		String longitudeStr = event.get("longitude");
+		if (longitudeStr == null || latitudeStr == null) {
+			return "error: latitude and longitude are required";
+		}
+		double latitude = Double.parseDouble(latitudeStr);
+		double longitude = Double.parseDouble(longitudeStr);
+		OpenMeteo meteo = new OpenMeteo();
 
-        try {
-            return meteo.getWeatherForecast(latitude, longitude);
-        } catch (IOException e) {
-            return "error:" + e.getMessage();
-        }
+		try {
+			return meteo.getWeatherForecast(latitude, longitude);
+		} catch (IOException e) {
+			return "error:" + e.getMessage();
+		}
 
-    }
+	}
 }
-
