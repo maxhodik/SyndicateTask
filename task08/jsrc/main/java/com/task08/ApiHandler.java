@@ -42,9 +42,9 @@ public class ApiHandler implements RequestHandler<Map<String, String>, String> {
     public String handleRequest(Map<String, String> event, Context context) {
         String latitudeStr = event.get("latitude");
         String longitudeStr = event.get("longitude");
-        if (longitudeStr == null || latitudeStr == null) {
-            return "error: latitude and longitude are required";
-        }
+//        if (longitudeStr == null || latitudeStr == null) {
+//            return "error: latitude and longitude are required";
+//        }
         double latitude = Double.parseDouble(latitudeStr);
         double longitude = Double.parseDouble(longitudeStr);
         OpenMeteo meteo = new OpenMeteo();
