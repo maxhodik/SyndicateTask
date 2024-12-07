@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
@@ -10,7 +11,15 @@
         <option value="$PROJECT_DIR$/task05/pom.xml" />
         <option value="$PROJECT_DIR$/task06/pom.xml" />
         <option value="$PROJECT_DIR$/task07/pom.xml" />
+        <option value="$PROJECT_DIR$/task08/layer/java/src/pom.xml" />
+        <option value="$PROJECT_DIR$/task08/layer/java/pom.xml" />
+        <option value="$PROJECT_DIR$/task08/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/task08/lambda-layer/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="17" project-jdk-type="JavaSDK">
