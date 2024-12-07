@@ -6,10 +6,75 @@ lambdas:
     runtime: java
 locks:
   modification_lock:
-    last_modification_date: '2024-12-07T19:35:44Z'
+    last_modification_date: '2024-12-07T19:56:22Z'
     locked_till: null
     initiator: m-god
 events:
+- operation: test
+  initiator: m-god
+  time_start: '2024-12-07T21:56:26Z'
+  time_end: '2024-12-07T21:56:26Z'
+  duration_sec: 0.001
+- operation: clean
+  initiator: m-god
+  bundle_name: task08_241207.214947
+  deploy_name: task08
+  time_start: '2024-12-07T21:56:15Z'
+  time_end: '2024-12-07T21:56:22Z'
+  duration_sec: 6.332
+  status: succeeded
+- operation: deploy
+  initiator: m-god
+  bundle_name: task08_241207.214947
+  deploy_name: task08
+  time_start: '2024-12-07T21:50:05Z'
+  time_end: '2024-12-07T21:50:21Z'
+  duration_sec: 16.251
+  status: failed
+  rollback_on_error: false
+- operation: build
+  initiator: m-god
+  bundle_name: task08_241207.214947
+  time_start: '2024-12-07T21:49:47Z'
+  time_end: '2024-12-07T21:50:00Z'
+  duration_sec: 12.59
+- operation: upload
+  initiator: m-god
+  bundle_name: task08_241207.214947
+  time_start: '2024-12-07T21:49:57Z'
+  time_end: '2024-12-07T21:50:00Z'
+  duration_sec: 3.158
+- operation: package_meta
+  initiator: m-god
+  bundle_name: task08_241207.214947
+  time_start: '2024-12-07T21:49:56Z'
+  time_end: '2024-12-07T21:49:56Z'
+  duration_sec: 0.013
+- operation: assemble
+  initiator: m-god
+  bundle_name: task08_241207.214947
+  time_start: '2024-12-07T21:49:48Z'
+  time_end: '2024-12-07T21:49:56Z'
+  duration_sec: 7.684
+- operation: assemble_java_mvn
+  initiator: m-god
+  bundle_name: task08_241207.214947
+  time_start: '2024-12-07T21:49:48Z'
+  time_end: '2024-12-07T21:49:55Z'
+  duration_sec: 7.521
+- operation: test
+  initiator: m-god
+  time_start: '2024-12-07T21:49:48Z'
+  time_end: '2024-12-07T21:49:48Z'
+  duration_sec: 0.001
+- operation: clean
+  initiator: m-god
+  bundle_name: task08_241207.213512
+  deploy_name: task08
+  time_start: '2024-12-07T21:49:38Z'
+  time_end: '2024-12-07T21:49:44Z'
+  duration_sec: 5.49
+  status: succeeded
 - operation: deploy
   initiator: m-god
   bundle_name: task08_241207.213512
@@ -1083,11 +1148,4 @@ events:
   time_start: '2024-12-02T22:01:43Z'
   time_end: '2024-12-02T22:01:43Z'
   duration_sec: 0.001
-latest_deploy:
-  initiator: m-god
-  bundle_name: task08_241207.213512
-  deploy_name: task08
-  time_start: '2024-12-07T21:35:30Z'
-  time_end: '2024-12-07T21:35:44Z'
-  duration_sec: 14.047
-  is_succeeded: false
+latest_deploy: {}
