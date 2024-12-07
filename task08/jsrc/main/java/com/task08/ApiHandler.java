@@ -41,17 +41,16 @@ public class ApiHandler implements RequestHandler<Map<String, String>, String> {
 
     @Override
     public String handleRequest(Map<String, String> event, Context context) {
-        String latitudeStr = event.get("latitude");
-        String longitudeStr = event.get("longitude");
-        latitudeStr = "50.4375";
-        longitudeStr = "30.5";
-        if (longitudeStr == null || latitudeStr == null) {
-            return "error: latitude and longitude are required";
-        }
-        double latitude = Double.parseDouble(latitudeStr);
-        double longitude = Double.parseDouble(longitudeStr);
+//        String latitudeStr = event.get("latitude");
+//        String longitudeStr = event.get("longitude");
+        double latitude = 50.4375;
+        double longitude = 30.5;
+//        if (longitudeStr == null || latitudeStr == null) {
+//            return "error: latitude and longitude are required";
+//        }
+//        double latitude = Double.parseDouble(latitudeStr);
+//        double longitude = Double.parseDouble(longitudeStr);
         OpenMeteo meteo = new OpenMeteo();
-
         try {
             System.out.println("____________________________________________________________________");
             return meteo.getWeatherForecast(latitude, longitude);
