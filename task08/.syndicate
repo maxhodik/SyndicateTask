@@ -6,10 +6,18 @@ lambdas:
     runtime: java
 locks:
   modification_lock:
-    last_modification_date: '2024-12-07T21:34:03Z'
+    last_modification_date: '2024-12-07T21:42:25Z'
     locked_till: null
     initiator: m-god
 events:
+- operation: clean
+  initiator: m-god
+  bundle_name: task08_241207.233327
+  deploy_name: task08
+  time_start: '2024-12-07T23:42:16Z'
+  time_end: '2024-12-07T23:42:24Z'
+  duration_sec: 8.391
+  status: succeeded
 - operation: deploy
   initiator: m-god
   bundle_name: task08_241207.233327
@@ -1846,11 +1854,4 @@ events:
   time_start: '2024-12-02T22:01:43Z'
   time_end: '2024-12-02T22:01:43Z'
   duration_sec: 0.001
-latest_deploy:
-  initiator: m-god
-  bundle_name: task08_241207.233327
-  deploy_name: task08
-  time_start: '2024-12-07T23:33:49Z'
-  time_end: '2024-12-07T23:34:03Z'
-  duration_sec: 13.873
-  is_succeeded: true
+latest_deploy: {}
