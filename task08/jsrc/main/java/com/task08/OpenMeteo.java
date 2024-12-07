@@ -31,7 +31,7 @@ public class OpenMeteo {
         }
         reader.close();
         conn.disconnect();
-
+        System.out.println(response.toString());
         return response.toString();
     }
 }

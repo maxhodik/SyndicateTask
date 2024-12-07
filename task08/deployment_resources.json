@@ -15,7 +15,8 @@
             "ssm:PutParameter",
             "ssm:GetParameter",
             "kms:Decrypt",
-            "lambda:GetFunctionUrlConfig"
+            "lambda:GetFunctionUrlConfig",
+            "lambda:UpdateFunctionUrlConfig"
           ],
           "Effect": "Allow",
           "Resource": "*"
