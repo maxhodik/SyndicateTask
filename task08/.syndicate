@@ -6,10 +6,70 @@ lambdas:
     runtime: java
 locks:
   modification_lock:
-    last_modification_date: '2024-12-07T22:29:30Z'
+    last_modification_date: '2024-12-07T22:38:35Z'
     locked_till: null
     initiator: m-god
 events:
+- operation: clean
+  initiator: m-god
+  bundle_name: task08_241208.003727
+  deploy_name: task08
+  time_start: '2024-12-08T00:38:25Z'
+  time_end: '2024-12-08T00:38:34Z'
+  duration_sec: 8.521
+  status: succeeded
+- operation: deploy
+  initiator: m-god
+  bundle_name: task08_241208.003727
+  deploy_name: task08
+  time_start: '2024-12-08T00:37:53Z'
+  time_end: '2024-12-08T00:38:09Z'
+  duration_sec: 15.581
+  status: failed
+  rollback_on_error: false
+- operation: build
+  initiator: m-god
+  bundle_name: task08_241208.003727
+  time_start: '2024-12-08T00:37:27Z'
+  time_end: '2024-12-08T00:37:45Z'
+  duration_sec: 17.167
+- operation: upload
+  initiator: m-god
+  bundle_name: task08_241208.003727
+  time_start: '2024-12-08T00:37:40Z'
+  time_end: '2024-12-08T00:37:44Z'
+  duration_sec: 4.395
+- operation: package_meta
+  initiator: m-god
+  bundle_name: task08_241208.003727
+  time_start: '2024-12-08T00:37:39Z'
+  time_end: '2024-12-08T00:37:39Z'
+  duration_sec: 0.024
+- operation: assemble
+  initiator: m-god
+  bundle_name: task08_241208.003727
+  time_start: '2024-12-08T00:37:28Z'
+  time_end: '2024-12-08T00:37:38Z'
+  duration_sec: 10.188
+- operation: assemble_java_mvn
+  initiator: m-god
+  bundle_name: task08_241208.003727
+  time_start: '2024-12-08T00:37:28Z'
+  time_end: '2024-12-08T00:37:38Z'
+  duration_sec: 9.667
+- operation: test
+  initiator: m-god
+  time_start: '2024-12-08T00:37:28Z'
+  time_end: '2024-12-08T00:37:28Z'
+  duration_sec: 0.002
+- operation: clean
+  initiator: m-god
+  bundle_name: task08_241208.002851
+  deploy_name: task08
+  time_start: '2024-12-08T00:37:14Z'
+  time_end: '2024-12-08T00:37:22Z'
+  duration_sec: 8.06
+  status: succeeded
 - operation: deploy
   initiator: m-god
   bundle_name: task08_241208.002851
@@ -2002,11 +2062,4 @@ events:
   time_start: '2024-12-02T22:01:43Z'
   time_end: '2024-12-02T22:01:43Z'
   duration_sec: 0.001
-latest_deploy:
-  initiator: m-god
-  bundle_name: task08_241208.002851
-  deploy_name: task08
-  time_start: '2024-12-08T00:29:15Z'
-  time_end: '2024-12-08T00:29:30Z'
-  duration_sec: 15.041
-  is_succeeded: false
+latest_deploy: {}

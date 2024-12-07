@@ -36,11 +36,11 @@ import java.util.Map;
         authType = AuthType.NONE,
         invokeMode = InvokeMode.BUFFERED
 )
-public class ApiHandler implements RequestHandler<Map<String, String>, String> {
+public class ApiHandler implements RequestHandler<Map<String, Object>, String> {
 
 
     @Override
-    public String handleRequest(Map<String, String> event, Context context) {
+    public String handleRequest(Map<String, Object> event, Context context) {
 //        String latitudeStr = event.get("latitude");
 //        String longitudeStr = event.get("longitude");
         double latitude = 50.4375;
