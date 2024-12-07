@@ -6,10 +6,58 @@ lambdas:
     runtime: java
 locks:
   modification_lock:
-    last_modification_date: '2024-12-07T18:15:41Z'
-    locked_till: null
+    last_modification_date: '2024-12-07T18:22:11Z'
+    locked_till: '2024-12-07T18:42:11Z'
     initiator: m-god
 events:
+- operation: build
+  initiator: m-god
+  bundle_name: task08_241207.202156
+  time_start: '2024-12-07T20:21:57Z'
+  time_end: '2024-12-07T20:22:08Z'
+  duration_sec: 11.176
+- operation: upload
+  initiator: m-god
+  bundle_name: task08_241207.202156
+  time_start: '2024-12-07T20:22:05Z'
+  time_end: '2024-12-07T20:22:08Z'
+  duration_sec: 3.159
+- operation: package_meta
+  initiator: m-god
+  bundle_name: task08_241207.202156
+  time_start: '2024-12-07T20:22:04Z'
+  time_end: '2024-12-07T20:22:04Z'
+  duration_sec: 0.018
+- operation: assemble
+  initiator: m-god
+  bundle_name: task08_241207.202156
+  time_start: '2024-12-07T20:21:57Z'
+  time_end: '2024-12-07T20:22:04Z'
+  duration_sec: 6.74
+- operation: assemble_java_mvn
+  initiator: m-god
+  bundle_name: task08_241207.202156
+  time_start: '2024-12-07T20:21:57Z'
+  time_end: '2024-12-07T20:22:04Z'
+  duration_sec: 6.651
+- operation: test
+  initiator: m-god
+  time_start: '2024-12-07T20:21:57Z'
+  time_end: '2024-12-07T20:21:57Z'
+  duration_sec: 0.001
+- operation: clean
+  initiator: m-god
+  bundle_name: task08_241207.201510
+  deploy_name: task08
+  time_start: '2024-12-07T20:21:48Z'
+  time_end: '2024-12-07T20:21:54Z'
+  duration_sec: 5.517
+  status: succeeded
+- operation: test
+  initiator: m-god
+  time_start: '2024-12-07T20:20:14Z'
+  time_end: '2024-12-07T20:20:14Z'
+  duration_sec: 0.001
 - operation: deploy
   initiator: m-god
   bundle_name: task08_241207.201510
@@ -506,11 +554,4 @@ events:
   time_start: '2024-12-02T22:01:43Z'
   time_end: '2024-12-02T22:01:43Z'
   duration_sec: 0.001
-latest_deploy:
-  initiator: m-god
-  bundle_name: task08_241207.201510
-  deploy_name: task08
-  time_start: '2024-12-07T20:15:25Z'
-  time_end: '2024-12-07T20:15:41Z'
-  duration_sec: 16.312
-  is_succeeded: true
+latest_deploy: {}
