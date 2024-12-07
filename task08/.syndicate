@@ -6,10 +6,62 @@ lambdas:
     runtime: java
 locks:
   modification_lock:
-    last_modification_date: '2024-12-07T18:42:03Z'
+    last_modification_date: '2024-12-07T18:55:11Z'
     locked_till: null
     initiator: m-god
 events:
+- operation: deploy
+  initiator: m-god
+  bundle_name: task08_241207.205443
+  deploy_name: task08
+  time_start: '2024-12-07T20:54:58Z'
+  time_end: '2024-12-07T20:55:11Z'
+  duration_sec: 13.634
+  status: failed
+  rollback_on_error: false
+- operation: build
+  initiator: m-god
+  bundle_name: task08_241207.205443
+  time_start: '2024-12-07T20:54:43Z'
+  time_end: '2024-12-07T20:54:54Z'
+  duration_sec: 10.82
+- operation: upload
+  initiator: m-god
+  bundle_name: task08_241207.205443
+  time_start: '2024-12-07T20:54:51Z'
+  time_end: '2024-12-07T20:54:54Z'
+  duration_sec: 2.975
+- operation: package_meta
+  initiator: m-god
+  bundle_name: task08_241207.205443
+  time_start: '2024-12-07T20:54:50Z'
+  time_end: '2024-12-07T20:54:50Z'
+  duration_sec: 0.01
+- operation: assemble
+  initiator: m-god
+  bundle_name: task08_241207.205443
+  time_start: '2024-12-07T20:54:44Z'
+  time_end: '2024-12-07T20:54:50Z'
+  duration_sec: 6.463
+- operation: assemble_java_mvn
+  initiator: m-god
+  bundle_name: task08_241207.205443
+  time_start: '2024-12-07T20:54:44Z'
+  time_end: '2024-12-07T20:54:50Z'
+  duration_sec: 6.371
+- operation: test
+  initiator: m-god
+  time_start: '2024-12-07T20:54:44Z'
+  time_end: '2024-12-07T20:54:44Z'
+  duration_sec: 0.001
+- operation: clean
+  initiator: m-god
+  bundle_name: task08_241207.204134
+  deploy_name: task08
+  time_start: '2024-12-07T20:54:35Z'
+  time_end: '2024-12-07T20:54:40Z'
+  duration_sec: 5.261
+  status: succeeded
 - operation: deploy
   initiator: m-god
   bundle_name: task08_241207.204134
@@ -825,9 +877,9 @@ events:
   duration_sec: 0.001
 latest_deploy:
   initiator: m-god
-  bundle_name: task08_241207.204134
+  bundle_name: task08_241207.205443
   deploy_name: task08
-  time_start: '2024-12-07T20:41:50Z'
-  time_end: '2024-12-07T20:42:03Z'
-  duration_sec: 13.467
+  time_start: '2024-12-07T20:54:58Z'
+  time_end: '2024-12-07T20:55:11Z'
+  duration_sec: 13.634
   is_succeeded: false
