@@ -2,9 +2,10 @@ package com.task09.dto;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class HourlyDto {
-
-    private double temperature;
-    private String time;
+    private List<Double> temperature;
+    private List<String> time;
 }
