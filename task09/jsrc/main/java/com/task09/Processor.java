@@ -64,12 +64,12 @@ public class Processor implements RequestHandler<Object, Map<String, Object>> {
         Map<String, Object> hourlyMap = new HashMap<>();
         Map<String, Object> hourlyUnitsMap = new HashMap<>();
 
-        hourlyMap.put("temperature_2m", forecastDto.getHourly().getTemperature());
+        hourlyMap.put("temperature_2m", forecastDto.getHourly().getTemperature_2m());
         hourlyMap.put("time", forecastDto.getHourly().getTime());
 
         System.out.println(forecastDto);
 
-        hourlyUnitsMap.put("temperature_2m", forecastDto.getHourly_units().getTemperature());
+        hourlyUnitsMap.put("temperature_2m", forecastDto.getHourly_units().getTemperature_2m());
         hourlyMap.put("time", forecastDto.getHourly_units().getTime());
 
         forecast.put("elevation", forecastDto.getElevation());

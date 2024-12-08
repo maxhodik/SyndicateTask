@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 public class HourlyUnitsDto {
-    private String temperature;
+    private String temperature_2m;
     private String time;
 }
