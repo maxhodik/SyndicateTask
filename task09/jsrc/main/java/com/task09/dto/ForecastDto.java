@@ -1,19 +1,19 @@
 package com.task09.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.Data;
 
 @Data
 public class ForecastDto {
 
     private int elevation;
-    private int generationTimeMs;
+    private int generationtime_ms;
     private HourlyDto hourly;
-    private HourlyUnitsDto hourlyUnits;
+    private HourlyUnitsDto hourly_units;
     private double latitude;
     private double longitude;
     private String timezone;
-    private String timezoneAbbreviation;
-    private double utcOffsetSeconds;
-
+    private String timezone_abbreviation;
+    private double utc_offset_seconds;
 
 }

@@ -65,6 +65,8 @@ public class Processor implements RequestHandler<Object, Map<String, Object>> {
         hourlyMap.put("temperature_2m", forecastDto.getHourly().getTemperature());
         hourlyMap.put("time", forecastDto.getHourly().getTime());
 
+        System.out.println(forecastDto);
+
         hourlyUnitsMap.put("temperature_2m", forecastDto.getHourlyUnits().getTemperature());
         hourlyMap.put("time", forecastDto.getHourlyUnits().getTime());
 
