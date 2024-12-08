@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 import com.syndicate.deployment.annotations.lambda.LambdaHandler;
 import com.syndicate.deployment.annotations.lambda.LambdaUrlConfig;
 import com.syndicate.deployment.model.RetentionSetting;
+import com.syndicate.deployment.model.TracingMode;
 import com.syndicate.deployment.model.lambda.url.AuthType;
 import com.syndicate.deployment.model.lambda.url.InvokeMode;
 import com.task09.dto.ForecastDto;
@@ -25,7 +26,8 @@ import java.util.UUID;
         roleName = "processor-role",
         isPublishVersion = true,
         aliasName = "Learn",
-        logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED
+        logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED,
+        tracingMode = TracingMode.Active
 )
 @LambdaUrlConfig(
         authType = AuthType.NONE,
@@ -49,14 +51,14 @@ public class Processor implements RequestHandler<Object, Map<String, Object>> {
             throw new RuntimeException(e);
         }
         ForecastDto forecastDto = gson.fromJson(weatherForecast, ForecastDto.class);
-        insertNewDataInAuditTable(forecastDto);
+        insertNewDataInWeatherTable(forecastDto);
 
         resultMap.put("statusCode", 200);
         resultMap.put("body", "Hello from Lambda");
         return resultMap;
     }
 
-    private void insertNewDataInAuditTable(ForecastDto forecastDto) {
+    private void insertNewDataInWeatherTable(ForecastDto forecastDto) {
 
         Map<String, Object> forecast = new HashMap<>();
         Map<String, Object> hourlyMap = new HashMap<>();
