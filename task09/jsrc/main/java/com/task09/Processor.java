@@ -30,8 +30,8 @@ import java.util.UUID;
         tracingMode = TracingMode.Active
 )
 @LambdaUrlConfig(
-        authType = AuthType.NONE,
-        invokeMode = InvokeMode.BUFFERED
+        authType = AuthType.NONE
+//        invokeMode = InvokeMode.BUFFERED
 )
 
 public class Processor implements RequestHandler<Object, Map<String, Object>> {
@@ -70,7 +70,7 @@ public class Processor implements RequestHandler<Object, Map<String, Object>> {
         System.out.println(forecastDto);
 
         hourlyUnitsMap.put("temperature_2m", forecastDto.getHourly_units().getTemperature_2m());
-        hourlyMap.put("time", forecastDto.getHourly_units().getTime());
+        hourlyUnitsMap.put("time", forecastDto.getHourly_units().getTime());
 
         forecast.put("elevation", forecastDto.getElevation());
         forecast.put("generationtime_ms", forecastDto.getGenerationtime_ms());
