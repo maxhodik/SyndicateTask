@@ -67,16 +67,16 @@ public class Processor implements RequestHandler<Object, Map<String, Object>> {
 
         System.out.println(forecastDto);
 
-        hourlyUnitsMap.put("temperature_2m", forecastDto.getHourlyUnits().getTemperature());
-        hourlyMap.put("time", forecastDto.getHourlyUnits().getTime());
+        hourlyUnitsMap.put("temperature_2m", forecastDto.getHourly_units().getTemperature());
+        hourlyMap.put("time", forecastDto.getHourly_units().getTime());
 
         forecast.put("elevation", forecastDto.getElevation());
-        forecast.put("generationtime_ms", forecastDto.getGenerationTimeMs());
+        forecast.put("generationtime_ms", forecastDto.getGenerationtime_ms());
         forecast.put("latitude", forecastDto.getLatitude());
         forecast.put("longitude", forecastDto.getLongitude());
         forecast.put("timezone", forecastDto.getTimezone());
-        forecast.put("timezone_abbreviation", forecastDto.getTimezoneAbbreviation());
-        forecast.put("utc_offset_seconds", forecastDto.getUtcOffsetSeconds());
+        forecast.put("timezone_abbreviation", forecastDto.getTimezone_abbreviation());
+        forecast.put("utc_offset_seconds", forecastDto.getUtc_offset_seconds());
 
         forecast.put("hourly", hourlyMap);
         forecast.put("hourly_units", hourlyUnitsMap);

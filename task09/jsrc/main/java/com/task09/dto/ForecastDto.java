@@ -7,7 +7,7 @@ import lombok.Data;
 public class ForecastDto {
 
     private int elevation;
-    private int generationtime_ms;
+    private double generationtime_ms;
     private HourlyDto hourly;
     private HourlyUnitsDto hourly_units;
     private double latitude;
