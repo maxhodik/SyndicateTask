@@ -74,7 +74,7 @@ public class PostReservationHandler implements RequestHandler<APIGatewayProxyReq
             throw new NoSuchElementException("Table not found");
         }
         result.getItems().stream()
-                .map(i -> Integer.parseInt(i.get("tableNumber").getN()))
+                .map(item -> Integer.parseInt(item.get("number").getN()))
                 .filter(v -> v == tableNumber).findFirst().orElseThrow();
     }
 
