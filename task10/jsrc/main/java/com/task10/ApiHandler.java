@@ -78,6 +78,7 @@ public class ApiHandler implements RequestHandler<APIGatewayProxyRequestEvent, A
     }
 
     private Map<RouteKey, RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent>> initHandlers() {
+        System.out.println("CognitoClient" + cognitoClient);
         return Map.of(
                 new RouteKey("POST", "/signup"), new PostSignUpHandler(cognitoClient),
                 new RouteKey("POST", "/signin"), new PostSignInHandler(cognitoClient),
