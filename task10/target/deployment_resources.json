@@ -1,1 +1,43 @@
-{ }
+{
+  "api_handler" : {
+    "name" : "api_handler",
+    "lambda_path" : "C:\\Users\\m-god\\IdeaProjects\\study\\epamLab\\AWS\\SyndicateTask\\task10",
+    "version" : "1.0.0",
+    "func_name" : "com.task10.ApiHandler",
+    "deployment_package" : "task10-1.0.0.jar",
+    "resource_type" : "lambda",
+    "runtime" : "java17",
+    "architectures" : [ "x86_64" ],
+    "iam_role_name" : "api_handler-role",
+    "memory" : 1024,
+    "timeout" : 300,
+    "subnet_ids" : [ ],
+    "security_group_ids" : [ ],
+    "dependencies" : [ {
+      "resource_name" : "${booking_userpool}",
+      "resource_type" : "cognito_idp"
+    } ],
+    "event_sources" : [ ],
+    "env_variables" : {
+      "reservations_table" : "${reservations_table}",
+      "CLIENT_ID" : {
+        "resource_type" : "cognito_idp",
+        "parameter" : "client_id",
+        "resource_name" : "${booking_userpool}"
+      },
+      "tables_table" : "${tables_table}",
+      "booking_userpool" : "${booking_userpool}",
+      "region" : "${region}",
+      "COGNITO_ID" : {
+        "resource_type" : "cognito_idp",
+        "parameter" : "id",
+        "resource_name" : "${booking_userpool}"
+      }
+    },
+    "tags" : { },
+    "publish_version" : false,
+    "alias" : "${lambdas_alias_name}",
+    "logs_expiration" : "${logs_expiration}",
+    "snap_start" : "None"
+  }
+}

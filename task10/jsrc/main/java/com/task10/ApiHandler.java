@@ -13,6 +13,7 @@ import com.syndicate.deployment.model.ResourceType;
 import com.syndicate.deployment.model.RetentionSetting;
 import com.task10.dto.RouteKey;
 import com.task10.handler.*;
+import lombok.extern.log4j.Log4j2;
 import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.cognitoidentityprovider.CognitoIdentityProviderClient;
@@ -40,8 +41,8 @@ import static com.syndicate.deployment.model.environment.ValueTransformer.USER_P
         resourceType = ResourceType.COGNITO_USER_POOL,
         name = "${booking_userpool}"
 )
+@Log4j2
 public class ApiHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
-
     private final CognitoIdentityProviderClient cognitoClient;
     private final Map<RouteKey, RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent>> handlersByRouteKey;
     private final Map<String, String> headersForCORS;
@@ -63,11 +64,17 @@ public class ApiHandler implements RequestHandler<APIGatewayProxyRequestEvent, A
 
 
     private RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> getHandler(APIGatewayProxyRequestEvent requestEvent) {
-        return handlersByRouteKey.getOrDefault(getRouteKey(requestEvent), routeNotImplementedHandler);
+
+        RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> requestHandler = handlersByRouteKey.getOrDefault(getRouteKey(requestEvent), routeNotImplementedHandler);
+        System.out.println("REquestHandler " + requestHandler);
+        return requestHandler;
     }
 
     private RouteKey getRouteKey(APIGatewayProxyRequestEvent event) {
-        return new RouteKey(event.getPath(), event.getHttpMethod());
+
+        RouteKey routeKey = new RouteKey(event.getPath(), event.getHttpMethod());
+        System.out.println("RouteKey " + routeKey);
+        return routeKey;
     }
 
     private Map<RouteKey, RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent>> initHandlers() {
