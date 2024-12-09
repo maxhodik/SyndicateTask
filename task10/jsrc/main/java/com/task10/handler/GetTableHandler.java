@@ -1,0 +1,45 @@
+package com.task10.handler;
+
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
+import com.amazonaws.services.dynamodbv2.document.DynamoDB;
+import com.amazonaws.services.dynamodbv2.document.Table;
+import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+import com.amazonaws.services.dynamodbv2.model.ScanRequest;
+import com.amazonaws.services.dynamodbv2.model.ScanResult;
+import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
+import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+public class GetTableHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
+    private static final String TABLE_NAME = "${tables_table}";
+    private final AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard().build();
+    private final DynamoDB dynamoDb = new DynamoDB(client);
+    private final Table table = dynamoDb.getTable(TABLE_NAME);
+
+    @Override
+    public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent event, Context context) {
+        ScanRequest scanRequest = new ScanRequest()
+                .withTableName(TABLE_NAME);
+        List<Object> tempList = new ArrayList<>();
+        ScanResult result = client.scan(scanRequest);
+        for (Map<String, AttributeValue> item : result.getItems()) {
+            Map<String, Object> tableMap = Map.of(
+                    "id", item.get("id").getN(),
+                    "number", item.get("number").getN(),
+                    "places", item.get("places").getN(),
+                    "isVip", item.get("isVip").getBOOL(),
+                    "minOrder", item.get("minOrder").getN());
+            tempList.add(new JSONObject(tableMap));
+        }
+        return new APIGatewayProxyResponseEvent()
+                .withStatusCode(200)
+                .withBody(new JSONObject().put("tables", tempList).toString());
+    }
+}
