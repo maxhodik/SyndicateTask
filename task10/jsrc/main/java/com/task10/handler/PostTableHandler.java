@@ -12,7 +12,7 @@ import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent
 import org.json.JSONObject;
 
 public class PostTableHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
-    private static final String TABLE_NAME = "${tables_table}";
+    private static final String TABLE_NAME = System.getenv("tables_table");
     private final AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard().build();
     private final DynamoDB dynamoDb = new DynamoDB(client);
     private final Table table = dynamoDb.getTable(TABLE_NAME);

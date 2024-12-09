@@ -16,8 +16,8 @@ import org.json.JSONObject;
 import java.util.UUID;
 
 public class PostReservationHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
-    private static final String RESERVATION_TABLE_NAME = "${reservations_table}";
-    private static final String TABLE_NAME = "${tables_table}";
+    private static final String RESERVATION_TABLE_NAME = System.getenv("reservations_table");
+    private static final String TABLE_NAME = System.getenv("tables_table");
 
     private final AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard().build();
     private final DynamoDB dynamoDb = new DynamoDB(client);

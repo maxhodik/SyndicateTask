@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 public class GetReservationHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
-    private static final String TABLE_NAME = "${reservations_table}";
+    private static final String TABLE_NAME = System.getenv("reservations_table");
     private final AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard().build();
     private final DynamoDB dynamoDb = new DynamoDB(client);
     private final Table table = dynamoDb.getTable(TABLE_NAME);
