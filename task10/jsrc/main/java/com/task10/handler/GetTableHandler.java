@@ -1,4 +1,4 @@
-package handler;
+package com.task10.handler;
 
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class GetReservationHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
-    private static final String TABLE_NAME = "${reservations_table}";
+public class GetTableHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
+    private static final String TABLE_NAME = "${tables_table}";
     private final AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard().build();
     private final DynamoDB dynamoDb = new DynamoDB(client);
     private final Table table = dynamoDb.getTable(TABLE_NAME);
@@ -31,17 +31,15 @@ public class GetReservationHandler implements RequestHandler<APIGatewayProxyRequ
         ScanResult result = client.scan(scanRequest);
         for (Map<String, AttributeValue> item : result.getItems()) {
             Map<String, Object> tableMap = Map.of(
-                    "tableNumber", Integer.parseInt(item.get("tableNumber").getN()),
-                    "clientName", item.get("clientName").getS(),
-                    "phoneNumber", item.get("phoneNumber").getS(),
-                    "date", item.get("date").getS(),
-                    "slotTimeStart", item.get("slotTimeStart").getS(),
-                    "slotTimeEnd", item.get("slotTimeEnd").getS());
-            tempList.add(tableMap);
+                    "id", item.get("id").getN(),
+                    "number", item.get("number").getN(),
+                    "places", item.get("places").getN(),
+                    "isVip", item.get("isVip").getBOOL(),
+                    "minOrder", item.get("minOrder").getN());
+            tempList.add(new JSONObject(tableMap));
         }
         return new APIGatewayProxyResponseEvent()
                 .withStatusCode(200)
-                .withBody(new JSONObject().put("reservations", tempList).toString());
-
+                .withBody(new JSONObject().put("tables", tempList).toString());
     }
 }
