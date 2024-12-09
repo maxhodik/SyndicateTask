@@ -73,6 +73,7 @@ public class ApiHandler implements RequestHandler<APIGatewayProxyRequestEvent, A
 
         RouteKey routeKey = new RouteKey(event.getHttpMethod(), event.getPath());
         System.out.println("RouteKey " + routeKey);
+        System.out.println(handlersByRouteKey);
         return routeKey;
     }
 
