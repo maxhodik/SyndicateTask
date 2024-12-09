@@ -19,7 +19,6 @@ public class PostSignUpHandler extends CognitoSupport implements RequestHandler<
     public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent event, Context context) {
         try {
             SignUp signUp = SignUp.singUpFromJson(event.getBody());
-
             // sign up
             String userId = cognitoSignUp(signUp)
                     .user().attributes().stream()
