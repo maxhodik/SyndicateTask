@@ -30,17 +30,7 @@
       ],
       "Version": "2012-10-17"
     },
-    "resource_type": "iam_policy",
-    "tags": {}
-  },
-  "api_handler-role": {
-    "predefined_policies": [],
-    "principal_service": "lambda",
-    "custom_policies": [
-      "lambda-basic-execution"
-    ],
-    "resource_type": "iam_role",
-    "tags": {}
+    "resource_type": "iam_policy"
   },
   "Tables": {
     "resource_type": "dynamodb_table",
@@ -49,8 +39,7 @@
     "read_capacity": 1,
     "write_capacity": 1,
     "global_indexes": [],
-    "autoscaling": [],
-    "tags": {}
+    "autoscaling": []
   },
   "Reservations": {
     "resource_type": "dynamodb_table",
@@ -59,8 +48,7 @@
     "read_capacity": 1,
     "write_capacity": 1,
     "global_indexes": [],
-    "autoscaling": [],
-    "tags": {}
+    "autoscaling": []
   },
   "task10_api": {
     "resource_type": "api_gateway",
@@ -73,9 +61,9 @@
           "authorization_type": "NONE",
           "integration_type": "lambda",
           "lambda_name": "api_handler",
+          "integration_request_body_template": {},
           "api_key_required": false,
           "method_request_parameters": {},
-          "integration_request_body_template": {},
           "responses": [],
           "integration_responses": [],
           "default_error_pattern": true,
@@ -93,13 +81,14 @@
           "integration_request_body_template": {},
           "responses": [],
           "integration_responses": [],
-          "default_error_pattern": true
+          "default_error_pattern": true,
+          "enable_proxy": true
         }
       },
       "/tables": {
         "enable_cors": true,
         "POST": {
-          "authorization_type": "AWS_IAM",
+          "authorization_type": "authorizer",
           "integration_type": "lambda",
           "lambda_name": "api_handler",
           "api_key_required": false,
@@ -107,10 +96,11 @@
           "integration_request_body_template": {},
           "responses": [],
           "integration_responses": [],
-          "default_error_pattern": true
+          "default_error_pattern": true,
+          "enable_proxy": true
         },
         "GET": {
-          "authorization_type": "AWS_IAM",
+          "authorization_type": "authorizer",
           "integration_type": "lambda",
           "lambda_name": "api_handler",
           "api_key_required": false,
@@ -118,13 +108,14 @@
           "integration_request_body_template": {},
           "responses": [],
           "integration_responses": [],
-          "default_error_pattern": true
+          "default_error_pattern": true,
+          "enable_proxy": true
         }
       },
       "/tables/{tableId}": {
         "enable_cors": true,
         "GET": {
-          "authorization_type": "AWS_IAM",
+          "authorization_type": "authorizer",
           "integration_type": "lambda",
           "lambda_name": "api_handler",
           "api_key_required": false,
@@ -132,24 +123,14 @@
           "integration_request_body_template": {},
           "responses": [],
           "integration_responses": [],
-          "default_error_pattern": true
+          "default_error_pattern": true,
+          "enable_proxy": true
         }
       },
       "/reservations": {
         "enable_cors": true,
-        "GET": {
-          "authorization_type": "AWS_IAM",
-          "integration_type": "lambda",
-          "lambda_name": "api_handler",
-          "api_key_required": false,
-          "method_request_parameters": {},
-          "integration_request_body_template": {},
-          "responses": [],
-          "integration_responses": [],
-          "default_error_pattern": true
-        },
         "POST": {
-          "authorization_type": "AWS_IAM",
+          "authorization_type": "authorizer",
           "integration_type": "lambda",
           "lambda_name": "api_handler",
           "api_key_required": false,
@@ -157,12 +138,24 @@
           "integration_request_body_template": {},
           "responses": [],
           "integration_responses": [],
-          "default_error_pattern": true
+          "default_error_pattern": true,
+          "enable_proxy": true
+        },
+        "GET": {
+          "authorization_type": "authorizer",
+          "integration_type": "lambda",
+          "lambda_name": "api_handler",
+          "api_key_required": false,
+          "method_request_parameters": {},
+          "integration_request_body_template": {},
+          "responses": [],
+          "integration_responses": [],
+          "default_error_pattern": true,
+          "enable_proxy": true
         }
       }
     },
     "minimum_compression_size": 0,
-    "tags": {},
     "authorizers": {
       "authorizer": {
         "type": "COGNITO_USER_POOLS",
@@ -199,5 +192,13 @@
         "ALLOW_REFRESH_TOKEN_AUTH"
       ]
     }
+  },
+  "api_handler-role": {
+    "predefined_policies": [],
+    "principal_service": "lambda",
+    "custom_policies": [
+      "lambda-basic-execution"
+    ],
+    "resource_type": "iam_role"
   }
 }
