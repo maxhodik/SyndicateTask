@@ -24,3 +24,9 @@ hs_err_pid*
 replay_pid*
 
 *.idea
+/task10/.syndicate-config-dev/syndicate_aliases.yml
+/task10/.syndicate-config-dev/syndicate.yml
+/task10/.syndicate
+/task10/target/
+/.idea/
+/target/
