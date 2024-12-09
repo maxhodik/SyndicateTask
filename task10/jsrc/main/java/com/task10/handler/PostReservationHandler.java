@@ -13,6 +13,7 @@ import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
 import org.json.JSONObject;
 
+import java.util.NoSuchElementException;
 import java.util.UUID;
 
 public class PostReservationHandler implements RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
@@ -68,6 +69,10 @@ public class PostReservationHandler implements RequestHandler<APIGatewayProxyReq
         ScanRequest scanRequest = new ScanRequest()
                 .withTableName(TABLE_NAME);
         ScanResult result = client.scan(scanRequest);
+        System.out.println("Tables result " + result);
+        if (result == null) {
+            throw new NoSuchElementException("Table not found");
+        }
         result.getItems().stream()
                 .map(i -> Integer.parseInt(i.get("tableNumber").getN()))
                 .filter(v -> v == tableNumber).findFirst().orElseThrow();

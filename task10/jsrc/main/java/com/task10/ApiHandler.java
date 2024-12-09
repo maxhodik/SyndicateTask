@@ -69,13 +69,20 @@ public class ApiHandler implements RequestHandler<APIGatewayProxyRequestEvent, A
         return requestHandler;
     }
 
-    private RouteKey getRouteKey(APIGatewayProxyRequestEvent event) {
 
-        RouteKey routeKey = new RouteKey(event.getHttpMethod(), event.getPath());
+    private RouteKey getRouteKey(APIGatewayProxyRequestEvent event) {
+        RouteKey routeKey;
+        String path = event.getPath();
+        if (path.matches("/tables/\\d+")) {
+            System.out.println("path matches \\d : " + path);
+            routeKey = new RouteKey(event.getHttpMethod(), "/tables/{tableId}");
+        } else {
+            routeKey = new RouteKey(event.getHttpMethod(), event.getPath());
+        }
         System.out.println("RouteKey " + routeKey);
-        System.out.println(handlersByRouteKey);
         return routeKey;
     }
+
 
     private Map<RouteKey, RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent>> initHandlers() {
         System.out.println("CognitoClient" + cognitoClient);
