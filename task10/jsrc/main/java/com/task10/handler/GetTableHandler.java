@@ -31,11 +31,11 @@ public class GetTableHandler implements RequestHandler<APIGatewayProxyRequestEve
         ScanResult result = client.scan(scanRequest);
         for (Map<String, AttributeValue> item : result.getItems()) {
             Map<String, Object> tableMap = Map.of(
-                    "id", item.get("id").getN(),
-                    "number", item.get("number").getN(),
-                    "places", item.get("places").getN(),
+                    "id", Integer.valueOf(item.get("id").getN()),
+                    "number", Integer.valueOf(item.get("number").getN()),
+                    "places", Integer.valueOf(item.get("places").getN()),
                     "isVip", item.get("isVip").getBOOL(),
-                    "minOrder", item.get("minOrder").getN());
+                    "minOrder", Integer.valueOf(item.get("minOrder").getN()));
             tempList.add(new JSONObject(tableMap));
         }
         return new APIGatewayProxyResponseEvent()
