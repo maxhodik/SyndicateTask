@@ -1,5 +1,3 @@
-package com.task10;
-
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
@@ -11,8 +9,8 @@ import com.syndicate.deployment.annotations.resources.DependsOn;
 import com.syndicate.deployment.model.DeploymentRuntime;
 import com.syndicate.deployment.model.ResourceType;
 import com.syndicate.deployment.model.RetentionSetting;
-import com.task10.dto.RouteKey;
-import com.task10.handler.*;
+import dto.RouteKey;
+import handler.*;
 import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.cognitoidentityprovider.CognitoIdentityProviderClient;
@@ -85,7 +83,7 @@ public class ApiHandler implements RequestHandler<APIGatewayProxyRequestEvent, A
 
     private CognitoIdentityProviderClient initCognitoClient() {
         return CognitoIdentityProviderClient.builder()
-                .region(Region.of(System.getenv("REGION")))
+                .region(Region.of(System.getenv("region")))
                 .credentialsProvider(DefaultCredentialsProvider.create())
                 .build();
     }
