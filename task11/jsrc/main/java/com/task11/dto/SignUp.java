@@ -1,4 +1,4 @@
-package com.task10.dto;
+package com.task11.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
