@@ -29,13 +29,18 @@ public class PostReservationHandler implements RequestHandler<APIGatewayProxyReq
     public APIGatewayProxyResponseEvent handleRequest(APIGatewayProxyRequestEvent event, Context context) {
         JSONObject tablesData = new JSONObject(event.getBody());
         int tableNumber = Integer.parseInt(tablesData.get("tableNumber").toString());
-
-        validateTableNumber(tableNumber);
-        checkTableAvailability(tableNumber);
-        String reservationId = createReservation(tablesData, tableNumber);
-        return new APIGatewayProxyResponseEvent()
-                .withStatusCode(200)
-                .withBody(new JSONObject().put("reservationId", reservationId).toString());
+        try {
+            validateTableNumber(tableNumber);
+            checkTableAvailability(tableNumber);
+            String reservationId = createReservation(tablesData, tableNumber);
+            return new APIGatewayProxyResponseEvent()
+                    .withStatusCode(200)
+                    .withBody(new JSONObject().put("reservationId", reservationId).toString());
+        }catch (Exception e){
+            return new APIGatewayProxyResponseEvent()
+                    .withStatusCode(400)
+                    .withBody(new JSONObject().put("message", e.getMessage()).toString());
+        }
     }
 
     private String createReservation(JSONObject tablesData, int tableNumber) {
