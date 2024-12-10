@@ -735,19 +735,19 @@
           "type": "object"
         }
       }
-    },
-    "securitySchemes": {
-      "authorizer": {
-        "type": "apiKey",
-        "name": "Authorization",
-        "in": "header",
-        "x-amazon-apigateway-authtype": "cognito_user_pools",
-        "x-amazon-apigateway-authorizer": {
-          "providerARNs": [
-            "arn:aws:cognito-idp:eu-central-1:905418349556:userpool/eu-central-1_3kt33Vo09"
-          ],
-          "type": "cognito_user_pools"
-        }
+    }
+  },
+  "securitySchemes": {
+    "authorizer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "x-amazon-apigateway-authtype": "cognito_user_pools",
+      "x-amazon-apigateway-authorizer": {
+        "x-syndicate-cognito-userpool-names": [
+          "${booking_userpool}"
+        ],
+        "type": "cognito_user_pools"
       }
     }
   }
