@@ -616,6 +616,8 @@
     },
     "/signup": {
       "post": {
+        "summary": "Sign up a new user",
+        "description": "Register a new user",
         "requestBody": {
           "content": {
             "application/json": {
